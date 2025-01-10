@@ -1,9 +1,11 @@
-import express from "express";
-//import Cars from "../models/Cars.model.js";
-import likeController from "../controllers/like.controller.js";
+import express from 'express';
+import likeController from '../controllers/like.controller.js';
 
 const likeRouter = express.Router();
 
-likeRouter.get(`/cars-list`, likeController.carList);
+likeRouter.post('/', likeController.addLike);
+likeRouter.delete('/', likeController.removeLike);
+likeRouter.get('/restaurants/:id', likeController.getLikesByRestaurant);
+likeRouter.get('/users/:id', likeController.getLikesByUser );
 
 export default likeRouter;

@@ -2,45 +2,45 @@ import { responseError, responseSuccess } from "../common/helpers/response.helpe
 import likeService from "../services/like.service.js";
 
 const likeController = {
-  likeRestaurant: async (req, res, next) => {
-    try {
-      const like = await likeService.likeRestaurantService(req); // Gọi service xử lý logic
-      const resData = responseSuccess(like, `Liked restaurant successfully`, 201); // Tạo response thành công
-      res.status(resData.code).json(resData); // Trả về JSON response
-    } catch (error) {
-      next(responseError(error.message, 400)); // Trả lỗi qua middleware
-    }
-  },
+    addLike: async (req, res, next) => {
+        try {
+            const like = await likeService.addLike(req);
+            const resData = responseSuccess(like, "Like added successfully", 201);
+            res.status(resData.code).json(resData);
+        } catch (error) {
+            next(error);
+        }
+    },
 
-  unlikeRestaurant: async (req, res, next) => {
-    try {
-      const message = await likeService.unlikeRestaurantService(req);
-      const resData = responseSuccess(message, `Unliked restaurant successfully`, 200);
-      res.status(resData.code).json(resData);
-    } catch (error) {
-      next(responseError(error.message, 400));
-    }
-  },
+    removeLike: async (req, res, next) => {
+        try {
+            await likeService.removeLike(req);
+            const resData = responseSuccess(null, "Like removed successfully", 204);
+            res.status(resData.code).json(resData);
+        } catch (error) {
+            next(error);
+        }
+    },
 
-  getLikesByRestaurant: async (req, res, next) => {
-    try {
-      const likes = await likeService.getLikesByRestaurantService(req);
-      const resData = responseSuccess(likes, `Fetched likes for restaurant successfully`, 200);
-      res.status(resData.code).json(resData);
-    } catch (error) {
-      next(responseError(error.message, 500));
-    }
-  },
+    getLikesByRestaurant: async (req, res, next) => {
+        try {
+            const likes = await likeService.getLikesByRestaurant(req);
+            const resData = responseSuccess(likes, "Fetched likes successfully", 200);
+            res.status(resData.code).json(resData);
+        } catch (error) {
+            next(error);
+        }
+    },
 
-  getLikesByUser: async (req, res, next) => {
-    try {
-      const likes = await likeService.getLikesByUserService(req);
-      const resData = responseSuccess(likes, `Fetched likes for user successfully`, 200);
-      res.status(resData.code).json(resData);
-    } catch (error) {
-      next(responseError(error.message, 500));
-    }
-  },
+    getLikesByUser:  async (req, res, next) => {
+        try {
+            const likes = await likeService.getLikesByUser (req);
+            const resData = responseSuccess(likes, "Fetched likes successfully", 200);
+            res.status(resData.code).json(resData);
+        } catch (error) {
+            next(error);
+        }
+    },
 };
 
 export default likeController;
