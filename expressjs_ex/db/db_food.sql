@@ -1,5 +1,5 @@
-create database `app-food`;
-use `app-food`;
+create database `db_food`;
+use `db_food`;
 
 CREATE TABLE food_type (
                            type_id INT AUTO_INCREMENT PRIMARY KEY,

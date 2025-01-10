@@ -1,4 +1,4 @@
-import { models } from '../common/sequelize/init.sequelize.js';
+//import { models } from '../common/sequelize/init.sequelize.js';
 
 const likeService = {
     addLike: async (req) => {

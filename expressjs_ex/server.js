@@ -1,6 +1,6 @@
 import express from 'express';
 import { Sequelize } from 'sequelize';
-import initModels from './src/models/init-models.js'; // Ensure this path is correct
+import initModels from './src/models/init-models.js'; 
 import rootRouter from './src/routes/root.router.js'; 
 
 const app = express();
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use('/api', rootRouter);
 
 // Initialize Sequelize with the correct connection string
-const sequelize = new Sequelize('mysql://root:1234@localhost:3307/db_cyber');
+const sequelize = new Sequelize('mysql://root:1234@localhost:3307/db_food');
 
 // Initialize models
 initModels(sequelize);
